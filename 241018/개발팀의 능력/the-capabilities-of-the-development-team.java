@@ -21,10 +21,12 @@ public class Main {
 
         int answer = Integer.MAX_VALUE;
         for(int i=0;i<5;i++){
-            for(int j=i+1;j<5;j++){
-                for(int k=j+1;k<5;k++){
-                    for(int z=k+1;z<5;z++){
-                        answer = Math.min(answer,getDiff(i,j,k,z));
+            for(int j=0;j<5;j++){
+                for(int k=0;k<5;k++){
+                    for(int z=0;z<5;z++){
+                        if(i != j && j != k && k != z && i !=k && i != z && j != z){
+                            answer = Math.min(answer,getDiff(i,j,k,z));
+                        }
                     }
                 }
             }
