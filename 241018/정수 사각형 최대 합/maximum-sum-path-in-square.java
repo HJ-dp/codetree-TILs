@@ -35,9 +35,7 @@ public class Main {
             int ny = y + dy[i];
             if(inRange(nx,ny)){
                 casa(nx,ny,cnt,visited);
-            } else {
-                return;
-            }
+            } 
         
         }
     }
