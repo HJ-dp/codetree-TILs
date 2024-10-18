@@ -4,18 +4,16 @@ public class Main {
     static int[][] map;
     static int[] dx = new int[]{0,1};
     static int[] dy = new int[]{1,0};
-    static boolean[][] visited;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         map = new int[N][N];
-        visited = new boolean[N][N];
         for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
                 map[i][j] = sc.nextInt();
             }
         }
-        casa(0,0,0,0);
+        casa(0,0,0,new boolean[N][N];);
         
         System.out.println(max);
 
@@ -24,8 +22,9 @@ public class Main {
         return 0 <= x && x <N && 0 <= y && y < N;
     }
 
-    public static void casa(int x, int y, int cnt, int c){
-        if(c > N*2){return;}
+    public static void casa(int x, int y, int cnt, boolean[][] visited;){
+        if(visited[x][y]) return;
+        visited[x][y] = true;
         if(x == N-1 && y == N-1){
             max = Math.max(max, cnt + map[N-1][N-1]);
             return;
@@ -35,7 +34,7 @@ public class Main {
             int nx = x + dx[i];
             int ny = y + dy[i];
             if(inRange(nx,ny)){
-                casa(nx,ny,cnt,c+1);
+                casa(nx,ny,cnt,visited);
             } else {
                 return;
             }
