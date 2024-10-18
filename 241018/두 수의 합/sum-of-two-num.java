@@ -1,35 +1,38 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.HashMap;
 
-class Pair{
-    int x,y;
-    public Pair(int x,int y){
-        this.x = x;
-        this.y = y;
-    }
-}
 public class Main {
-    static int N, K, answer;
-    static HashMap<Pair,Integer> hs = new HashMap<>();
-    static HashMap<Integer,Integer> hss = new HashMap<>();
+    public static final int MAX_N = 100000;
+    
+    // 변수 선언
+    public static int n, k;
+    public static long[] arr = new long[MAX_N];
+    public static HashMap<Long, Integer> count = new HashMap<>();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        K = sc.nextInt();
-        for(int i=0;i<N;i++){
-            int a = sc.nextInt();
-            hss.put(i,a);
+        // 입력:
+        n = sc.nextInt();
+        k = sc.nextInt();
+        for(int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+
+        int ans = 0;
+
+        // 배열을 앞에서부터 순회하며 쌍을 만들어줍니다.
+        for(int i = 0; i < n; i++) {
+            long diff = k - arr[i];
+            // 가능한 모든 쌍의 수를 세어줍니다.
+            if(count.containsKey(diff))
+                ans += count.get(diff);
+
+            // 현재 숫자의 개수를 하나 증가시켜줍니다.
+            if(!count.containsKey(arr[i]))
+                count.put(arr[i], 1);
+            else
+                count.put(arr[i], count.get(arr[i]) + 1);
         }
-        answer = 0;
-        for(int i=0;i<N;i++){
-            int temp = hss.get(i);
-            for(int j=i+1;j<N;j++){
-                if(hss.get(i) + hss.get(j) == K && hs.get(new Pair(i,j)) == null){
-                    answer++;
-                    hs.put(new Pair(i,j),1);
-                    hs.put(new Pair(j,i),1);
-                }
-            }
-        }
-        System.out.println(answer);
+
+        System.out.print(ans);
     }
 }
