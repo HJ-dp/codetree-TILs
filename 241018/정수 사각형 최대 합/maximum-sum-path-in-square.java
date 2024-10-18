@@ -25,7 +25,7 @@ public class Main {
     }
 
     public static void casa(int x, int y, int cnt, int c){
-        if(c > N*2){return;}
+        if(c > N*2){continue;}
         if(x == N-1 && y == N-1){
             max = Math.max(max, cnt + map[N-1][N-1]);
             return;
