@@ -15,7 +15,7 @@ public class Main {
                 map[i][j] = sc.nextInt();
             }
         }
-        casa(0,0,0);
+        casa(0,0,0,0);
         
         System.out.println(max);
 
@@ -24,8 +24,8 @@ public class Main {
         return 0 <= x && x <N && 0 <= y && y < N;
     }
 
-    public static void casa(int x, int y, int cnt){
-        // visited[x][y] = true;
+    public static void casa(int x, int y, int cnt, int c){
+        if(c > N*2){return;}
         if(x == N-1 && y == N-1){
             max = Math.max(max, cnt + map[N-1][N-1]);
             return;
@@ -35,7 +35,7 @@ public class Main {
             int nx = x + dx[i];
             int ny = y + dy[i];
             if(inRange(nx,ny)){
-                casa(nx,ny,cnt);
+                casa(nx,ny,cnt,c+1);
             } else {
                 return;
             }
