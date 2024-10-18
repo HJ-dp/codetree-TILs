@@ -13,7 +13,7 @@ public class Main {
                 map[i][j] = sc.nextInt();
             }
         }
-        casa(0,0,0,new boolean[N][N]);
+        casa(0,0,0);
         
         System.out.println(max);
 
@@ -22,21 +22,18 @@ public class Main {
         return 0 <= x && x <N && 0 <= y && y < N;
     }
 
-    public static void casa(int x, int y, int cnt, boolean[][] visited){
-        if(visited[x][y]) return;
-        visited[x][y] = true;
+    public static void casa(int x, int y, int cnt){
+        cnt += map[x][y];
         if(x == N-1 && y == N-1){
-            max = Math.max(max, cnt + map[N-1][N-1]);
+            max = Math.max(max, cnt);
             return;
         }
-        cnt += map[x][y];
         for(int i=0;i<2;i++){
             int nx = x + dx[i];
             int ny = y + dy[i];
             if(inRange(nx,ny)){
-                casa(nx,ny,cnt,visited);
+                casa(nx,ny,cnt);
             } 
-        
         }
     }
 }
