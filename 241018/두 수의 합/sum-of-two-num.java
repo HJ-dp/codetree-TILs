@@ -10,16 +10,16 @@ public class Main {
         for(int i=0;i<N;i++){
             int a = sc.nextInt();
             hss.put(i,a);
-            hs.put(a,hs.getOrDefault(a,0)+1);
         }
         answer = 0;
         for(int i=0;i<N;i++){
             int temp = hss.get(i);
-            if (hs.get(K-temp) != null){
-                answer += hs.get(K-temp);
-
+            for(int j=i+1;j<N;j++){
+                if(hss.get(i) + hss.get(j) == K){
+                    answer++;
+                }
             }
         }
-        System.out.println(answer/2);
+        System.out.println(answer);
     }
 }
