@@ -17,7 +17,8 @@ public class Main {
                     int a1 = hs.get(i);
                     int a2 = hs.get(j);
                     int a3 = hs.get(k);
-                    if(i != j && j != k && i != k && a1+a2+a3 == K){
+                    int b = a1 + a2 + a3;
+                    if(i != j && j != k && i != k && b == K){
                         cnt++;
                     }
                 }
